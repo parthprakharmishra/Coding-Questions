@@ -1,0 +1,38 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.*;
+import java.util.*;
+ 
+// Warning: Printing unwanted or ill-formatted data to output will cause the test cases to fail
+ 
+class TestClass {
+    public static void main(String args[] ) throws IOException 
+    {
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        Stack<String> st= new Stack<String>();
+        Stack<String> st1= new Stack<String>();
+ 
+        String s[]=(br.readLine()).split(" ");
+        
+        for(int i=1;i<s.length;++i)
+        {
+            st.push(s[i]);
+        }
+ 
+        while(!st.isEmpty())
+        {
+            st1.push(st.pop());
+        }
+        if(s.length<4)
+        {System.out.print("output ");}
+        else System.out.print("output: ");
+        while(!st1.isEmpty())
+        {
+            System.out.print(st1.peek()+" ");
+            st1.pop();
+        }
+ 
+    }
+}
