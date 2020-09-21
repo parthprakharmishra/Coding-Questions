@@ -10,45 +10,25 @@
  */
 class Solution {
     public boolean isPalindrome(ListNode head) {
-        if(head==null || head.next==null)return(true);
-        
-        ListNode curnode1 = head;
-        ListNode curnode2 = head;
-        ListNode curnode = head;
-
-        
-        while(curnode2!=null && curnode2.next!=null)
+       
+        ListNode ln = head;
+        Stack <Integer> st = new Stack<Integer>();
+        while(ln!=null)
         {
-            curnode1=curnode1.next;
-            curnode2=curnode2.next.next;
+            st.add(ln.val);
+            ln=ln.next;
         }
-        
-        
-        ListNode pre = null;
-        ListNode nxt = null;
-        
-        while(curnode1 != null)
-        {
-            nxt=curnode1.next;
-            curnode1.next=pre;
-            pre=curnode1;
-            curnode1=nxt;
-        }
-        
-      
-        
         
         boolean b=true;
-        while(pre!=null)
+        while(head!=null)
         {
-            if(curnode.val!=pre.val)
+            if(st.pop()!=head.val)
             {
-                b=false;break;
+                b=false;
+                break;
             }
-            pre=pre.next;
-            curnode=curnode.next;
+            head=head.next;
         }
         return(b);
-
     }
 }
