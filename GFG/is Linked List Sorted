@@ -1,0 +1,86 @@
+//Initial Template for Java
+
+
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class Main
+{
+    public static void main(String[] args){
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t-->0)
+        {
+            int n=sc.nextInt();
+            Node head = new Node(sc.nextInt());
+            Node tail = head;
+            for(int i=0; i<n-1; i++)
+            {
+                tail.next = new Node(sc.nextInt());
+                tail = tail.next;
+            }
+            System.out.println(new Solution().isSorted(head) ? "1" : "0");
+        }
+    }
+}
+
+
+
+// } Driver Code Ends
+
+
+//User function Template for Java
+
+
+/*
+class Node
+{
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.data = data;
+        this.next = null;
+    }
+}
+*/
+
+
+
+
+
+
+class Solution
+{
+    public static boolean isSorted(Node head)
+    {
+        Node curr = head;
+        int m=1;
+        while(curr.next!=null)
+        {
+            if(curr.data>curr.next.data){m=0;break;}
+            curr=curr.next;
+        }
+        Node curr2 = head;
+        int m2=1;
+        while(curr2.next!=null)
+        {
+            if(curr2.data<curr2.next.data){m2=0;break;}
+            curr2=curr2.next;
+        }
+        return(m==1 || m2==1);
+    }
+}
