@@ -1,0 +1,36 @@
+
+/* The function should return the names of those entries whose date is the current date. The names should be separated by a comma.
+
+For example, here's an array of three entries and assume the date now is 2021-01-21.
+
+[{ name: "Johny" , date: "2021-01-21T02:53:42+05:30" }, { name: "Sugar" , date: "2021-01-22T02:53:42+05:30" }, { name: "Sun" , date: "2021-01-21T03:53:42+05:30" }]
+
+The function should return: ``` Johny,Sun ```. Please note that the names are separated by a comma without space.
+*/
+
+
+function todaysEntries(entries){
+	let today = new Date();
+let dd = String(today.getDate()).padStart(2, '0');
+let mm = String(today.getMonth() + 1).padStart(2, '0');
+let yyyy = today.getFullYear();
+today = yyyy + '-' + mm + '-' + dd;
+let str=[];
+for(let i=0; i<entries.length;++i)
+{
+		if(((entries[i].date).substring(0,10)))str.push(((entries[i].date).substring(0,10)));
+}
+console.log(str);
+
+let str1;
+let arr="";
+for(let i=0; i<entries.length;++i)
+{
+	str1=str[i].includes(today);
+	if(str1===true)arr=arr+(entries[i].name)+",";;
+}
+if(arr.length!==0)return(arr.substring(0,arr.length-1));
+else return("");
+}
+
+module.exports = todaysEntries;
