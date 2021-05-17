@@ -1,0 +1,22 @@
+class Decode
+{
+    //Function to return the decoded string.
+    static String decodeHuffmanData(MinHeapNode root, String binaryString)
+    {
+        String s="";
+        MinHeapNode temp=root;
+        
+        for(int i=0;i<binaryString.length();++i)
+        {
+            
+            if(binaryString.charAt(i)=='0')temp=temp.left;
+            else temp=temp.right;
+            if(temp.left==null || temp.right==null)
+            {
+                s=s+String.valueOf(temp.data);
+                temp=root;
+            }
+        }
+        return(s);
+    }
+}
