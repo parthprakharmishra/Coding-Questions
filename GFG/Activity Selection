@@ -1,0 +1,50 @@
+class Solution
+{
+    static int activitySelection(int start[], int end[], int n)
+    {
+      class Pair 
+      {
+          int x;
+          int y;
+          Pair(int x, int y) 
+          {
+              this.x = x;
+              this.y = y;
+          }
+      }
+
+      class SortByEndingTime implements Comparator<Pair> 
+      { 
+          public int compare(Pair a, Pair b) 
+          { 
+              return a.y - b.y; 
+          } 
+      }
+
+
+      Pair[] activites = new Pair[n];
+      for( int i = 0; i < n; i++)
+      {
+          activites[i] = new Pair(start[i],end[i]);
+      }
+
+      Arrays.sort(activites, new SortByEndingTime());
+
+
+      int count = 0;
+      int currEnd = -1;
+
+      for( int i = 0 ; i < n; i++)
+      {
+          Pair pair = activites[i];
+          if(pair.x > currEnd) 
+          {
+              count++;
+              currEnd = pair.y;
+          }
+      }
+
+      return count;
+
+    }
+}
