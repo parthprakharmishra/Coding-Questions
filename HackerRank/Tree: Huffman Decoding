@@ -1,0 +1,18 @@
+void decode(String str, Node root) 
+    {
+        String s="";
+        Node temp=root;
+        
+        for(int i=0;i<str.length();++i)
+        {
+            
+            if(str.charAt(i)=='0')temp=temp.left;
+            else temp=temp.right;
+            if(temp.left==null || temp.right==null)
+            {
+                s=s+String.valueOf(temp.data);
+                temp=root;
+            }
+        }
+        System.out.println(s);
+    }
