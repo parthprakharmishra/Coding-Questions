@@ -1,0 +1,39 @@
+class Solution
+{
+    class Profit implements Comparator<Job>
+    {
+        @Override
+        public int compare(Job a, Job b)
+        {
+            // if(a.profit<b.profit)return(1);
+            // else if(a.profit>b.profit)return(-1);
+            // else return(0);
+            return(b.profit-a.profit);
+        }
+    }
+    //Function to find the maximum profit and the number of jobs done.
+    int[] JobScheduling(Job arr[], int n)
+    {
+        Arrays.sort(arr, new Profit());
+        
+        
+        boolean profits[]=new boolean[100];
+        
+        int prof=0, count=0;
+        for(Job j:arr)
+        {
+            for(int i=j.deadline-1;i>=0;--i)
+            {
+                if(!profits[i])
+                {
+                    profits[i]=true;
+                    prof=prof+j.profit;
+                    ++count;
+                    break;
+                }
+            }
+        }
+        
+        return(new int[]{count,prof});
+    }
+}
