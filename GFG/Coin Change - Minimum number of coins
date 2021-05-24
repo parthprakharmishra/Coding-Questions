@@ -1,0 +1,24 @@
+class Solution
+{
+    //Function to find the minimum number of coins to make the change 
+    //for value using the coins of given denominations.
+    public long minimumNumberOfCoins(int coins[],int n,int value)
+    {
+        long db[]=new long[value+1];
+        for(int i=0;i<=value;++i)db[i]=Integer.MAX_VALUE;
+        db[0]=0;
+
+
+        for(int i=1;i<=value;++i)
+        {
+            for(int j=0;j<n;++j)
+            {
+                if(coins[j]<=i)db[i]=Math.min(db[i],1+db[i-coins[j]]);
+            }
+        }
+        
+        
+        if(db[value]==Integer.MAX_VALUE)return(-1);
+        else return(db[value]);
+    }
+}
