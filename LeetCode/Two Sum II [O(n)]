@@ -1,0 +1,21 @@
+class Solution {
+    public int[] twoSum(int[] numbers, int target) 
+    {
+        
+        
+        HashMap<Integer,Integer> hm = new HashMap<>();
+       for(int i=0;i<numbers.length;++i)
+       {
+           hm.put(numbers[i],i);
+       }
+        int i1=0,i2=0;
+        
+        for(int i=0;i<numbers.length;++i)
+       {
+            int h=target-numbers[i];
+           if(hm.containsKey(h)){i1=i+1;i2=hm.get(h)+1;break;}
+       }
+        int arr[] = new int[]{i1,i2};
+        return(arr);
+    }
+}
