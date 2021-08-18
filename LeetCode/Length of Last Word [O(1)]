@@ -1,0 +1,16 @@
+class Solution {
+    public int lengthOfLastWord(String s) 
+    {
+        s=s.trim();
+        int g=0;
+        if(s.lastIndexOf(" ")!=-1)
+        {
+             g = s.length()-1-s.lastIndexOf(" ");
+        }
+        else
+        {
+            g = s.length();
+        }
+        return(g);
+    }
+}
