@@ -1,0 +1,27 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) 
+    {
+        int s=0, l=nums.length-1;
+        int min=Integer.MAX_VALUE, max=-1;
+        
+        while(s<=l)
+        {
+            if(nums[s]==target)
+            {
+                min = Math.min(min, s);
+                max = Math.max(max, s);
+            }
+            if(nums[l]==target)
+            {
+                min = Math.min(min, l);
+                max = Math.max(max, l);
+            }
+            --l;++s;
+        }
+        if(min==Integer.MAX_VALUE)min=-1;
+        int arr[] = new int[2];
+        arr[0]=min;
+        arr[1]=max;
+        return(arr);
+    }
+}
