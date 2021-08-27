@@ -1,0 +1,64 @@
+class Solution {
+    public int[] sortArray(int[] nums) 
+    {
+        MergeSort(nums, 0, nums.length-1);
+        return(nums);
+    }
+    
+    public void MergeSort(int n[], int l, int r)
+    {
+        if(l<r)
+        {
+            int mid=(l+r)/2;
+            MergeSort(n, l, mid);
+            MergeSort(n, mid+1, r);
+            Merge(n, l, mid, r);
+        }
+    }
+    
+    public void Merge(int n[], int l, int mid, int r)
+    {
+        int n1 = mid-l+1, n2=r-mid;
+        int a[] = new int[n1];
+        int b[] = new int[n2];
+        
+        for(int i=0;i<n1;++i)
+        {
+            a[i]=n[i+l];
+        }
+        for(int i=0;i<n2;++i)
+        {
+            b[i]=n[i+mid+1];
+        }
+        
+        
+        int i=0, j=0, k=l;
+        
+        
+        while(i<n1 && j<n2)
+        {
+            if(a[i]<b[j])
+            {
+                n[k]=a[i];
+                ++k;++i;
+            }
+            else
+            {
+                n[k]=b[j];
+                ++k;++j;
+            }
+        }
+        
+        while(i<n1)
+        {
+            n[k]=a[i];
+            ++k;++i;
+        }
+        while(j<n2)
+        {
+            n[k]=b[j];
+            ++k;++j;
+        }
+        
+    }
+}
