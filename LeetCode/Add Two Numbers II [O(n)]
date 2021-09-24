@@ -1,0 +1,79 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) 
+    {
+        Stack<Integer> st1= new Stack<>();
+        while(l1!=null)
+        {
+            st1.push(l1.val);
+            l1=l1.next;
+        }
+        Stack<Integer> st2 = new Stack<>();
+        while(l2!=null)
+        {
+            st2.push(l2.val);
+            l2=l2.next;
+        }
+        // System.out.println(st1);
+        // System.out.println(st2);
+        
+        ListNode tmp= new ListNode(0);
+        ListNode head= tmp;
+        
+        while(!st1.isEmpty() && !st2.isEmpty())
+        {
+            tmp.val=tmp.val+st1.pop()+st2.pop();
+            int div = tmp.val/10;
+            tmp.val=tmp.val%10;
+            ListNode nlst= new ListNode(div);
+            tmp.next=nlst;
+            tmp=tmp.next;
+        }
+        
+        while(!st1.isEmpty())
+        {
+            tmp.val=tmp.val+st1.pop();
+            int div = tmp.val/10;
+            tmp.val=tmp.val%10;
+            ListNode nlst= new ListNode(div);
+            tmp.next=nlst;
+            tmp=tmp.next;
+        }
+        while(!st2.isEmpty())
+        {
+            tmp.val=tmp.val+st2.pop();
+            int div = tmp.val/10;
+            tmp.val=tmp.val%10;
+            ListNode nlst= new ListNode(div);
+            tmp.next=nlst;
+            tmp=tmp.next;
+        }
+        
+        Stack<Integer> st3 = new Stack<>();
+        while(head!=null)
+        {
+            st3.add(head.val);
+            head=head.next;
+        }
+        
+        if(st3.peek()==0)st3.pop();
+        ListNode t = new ListNode();
+        ListNode t1 = t;
+        while(!st3.isEmpty())
+        {
+            ListNode th = new ListNode(st3.pop());
+            t.next=th;
+            t=t.next;
+        }
+        return(t1.next);
+    }
+}
