@@ -1,0 +1,32 @@
+class Solution {
+    public String decodeString(String s) 
+    {
+        Stack<Character> st = new Stack<>();
+        String str="",s1="";
+        for(int i=0;i<s.length();++i)
+        {
+            if(s.charAt(i)==']')
+            {
+                while(st.peek()!='[')
+                {
+                    s1=st.pop()+s1;
+                }
+                st.pop();
+                
+                String n1="";
+                while(!st.isEmpty() && st.peek()>=48 && st.peek()<=58)n1 = st.pop()+n1;
+                int n =Integer.valueOf(n1);
+                
+                s1=s1.repeat(n);
+                for(int k=0;k<s1.length();++k)st.add(s1.charAt(k));
+                s1="";
+            }
+            else
+            {
+                st.add(s.charAt(i));
+            }
+        }
+        while(!st.isEmpty())str=st.pop()+str;
+        return(str);
+    }
+}
