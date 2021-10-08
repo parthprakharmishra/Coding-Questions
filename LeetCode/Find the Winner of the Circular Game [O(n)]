@@ -1,0 +1,18 @@
+class Solution {
+    public int findTheWinner(int n, int k) 
+    {
+        
+        
+        ArrayList<Integer> al = new ArrayList<>();
+        for(int i=1;i<=n;++i)al.add(i);
+        
+        int rem=0;
+        while(al.size()!=1)
+        {
+            rem = (rem+k-1)%n;
+            al.remove(rem);
+            --n;
+        }
+        
+    }
+}
