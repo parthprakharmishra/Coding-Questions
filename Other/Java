@@ -1,0 +1,141 @@
+import java.io.*;
+import java.util.*;
+
+class ProjectsGranted implements Serializable
+{
+    private static final long serialversionUID =129348938L;
+    String ProjectTitle, FundAgency, School, InvestigatorName;
+    int amt, duration;
+
+    ProjectsGranted()
+    {
+        ProjectTitle="";
+        FundAgency="";
+        School="";
+        InvestigatorName="";
+        amt=0;
+        duration=0;
+    }
+
+    ProjectsGranted(String pt, String fa, String s, String in, int a, int d)
+    {
+        ProjectTitle=pt;
+        FundAgency=fa;
+        School=s;
+        InvestigatorName=in;
+        amt=a;
+        duration=d;
+    }
+
+}
+
+
+
+public class SerialQ1_19BIT0390 {
+public static void printdata(ProjectsGranted obj[])
+    {
+        for(int i=0;i<obj.length;++i)
+        {
+            if(obj[i].amt>100000)
+            {
+                System.out.println("Project Title = " + obj[i].ProjectTitle);
+                System.out.println("Funding Agency = " + obj[i].FundAgency);
+                System.out.println("School = " + obj[i].School);
+                System.out.println("Investigator Name = " + obj[i].InvestigatorName);
+                System.out.println("Duration = " + obj[i].duration);
+                System.out.println("Amount = " + obj[i].amt);
+            }
+        }
+    }
+
+public static void main(String[] args)throws IOException
+    {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter number of objects");
+        int n = Integer.parseInt(br.readLine());
+
+        ProjectsGranted object[] = new ProjectsGranted[n];
+        for(int i=0;i<n;++i)
+        {
+            System.out.println("Enter the details for n objects");
+            String pt = br.readLine();
+            String fa = br.readLine();
+            String s = br.readLine();
+            String in = br.readLine();
+            int a = Integer.parseInt(br.readLine());
+            int d = Integer.parseInt(br.readLine());
+
+            object[i]=new ProjectsGranted(pt, fa, s, in, a, d);
+        }
+
+        //ProjectsGranted object = new ProjectsGranted("PT1", "FA1", "SITE", "IN1", 200000, 5);
+        String filename = "ProjectsGranted.txt";
+
+        for(int i=0;i<n;++i)
+        {
+
+            // Serialization
+            try {
+
+                // Saving of object in a file
+                FileOutputStream file = new FileOutputStream(filename);
+                ObjectOutputStream out = new ObjectOutputStream(file);
+
+                // Method for serialization of object
+                out.writeObject(object[i]);
+
+                out.close();
+                file.close();
+
+                // value of static variable changed
+            }
+
+            catch (IOException ex) {
+                System.out.println("IOException is caught");
+            }
+        }
+
+                System.out.println();
+
+        for(int i=0;i<n;++i)
+        {
+            object[i] = null;
+        }
+
+        for(int i=0;i<n;++i)
+        {
+            
+            // Deserialization
+            try {
+
+                // Reading the object from a file
+                FileInputStream file = new FileInputStream(filename);
+                ObjectInputStream in = new ObjectInputStream(file);
+
+                // Method for deserialization of object
+                object[i] = (ProjectsGranted)in.readObject();
+
+                in.close();
+                file.close();
+                System.out.println("Object has been deserialized\n" + "Data after Deserialization.");
+                System.out.println();
+                printdata(object);
+                System.out.println();
+                
+
+        
+
+                // System.out.println("z = " + object1.z);
+            }
+
+            catch (IOException ex) {
+                System.out.println("IOException is caught");
+            }
+
+            catch (ClassNotFoundException ex) {
+                System.out.println("ClassNotFoundException" + " is caught");
+            }
+
+        }
+    }
+}
