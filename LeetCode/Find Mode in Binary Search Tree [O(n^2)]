@@ -1,0 +1,60 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    HashMap<Integer, Integer> hm = new HashMap<>();
+    public int[] findMode(TreeNode root) {
+        traverse(root);
+        int a[] = new int[hm.size()];
+        int b[] = new int[hm.size()];
+        
+        int k=0, max=0;
+        ArrayList<Integer> al = new ArrayList<>();
+        
+        for(Map.Entry i: hm.entrySet()){
+            a[k]=(Integer)i.getKey();
+            b[k]=(Integer)i.getValue();
+            
+            
+            
+            if(b[k]>max)
+            {
+                max=b[k];
+                al.clear();
+                al.add(a[k]);
+            }
+            else if(b[k]==max)al.add(a[k]);
+            ++k;
+        }
+        
+        int arr[] = new int[al.size()];
+        for(int j=0;j<al.size();++j)
+        {
+            arr[j]=al.get(j);
+        }
+        return(arr);
+        
+    }
+    
+    public void traverse(TreeNode root)
+    {
+        if(root==null)return;
+        traverse(root.left);
+        traverse(root.right);
+        
+        if(hm.containsKey(root.val))hm.put(root.val, hm.get(root.val)+1);
+        else hm.put(root.val,1);
+    }
+}
