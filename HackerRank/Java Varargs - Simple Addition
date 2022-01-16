@@ -1,0 +1,15 @@
+class Add
+{
+    void add(int ...args)
+    {
+        int s=0;
+        String str="";
+        for(int x:args)
+        {
+            str=str+(Integer.toString(x))+"+";
+            s=s+x;
+        }
+        str=str.substring(0,str.length()-1);
+        System.out.println(str+"="+s);
+    }
+}
