@@ -1,0 +1,27 @@
+public class Solution {
+    static boolean isAnagram(String a, String b) {
+        // Complete the function
+        if(a==null || b==null || a.equals("") || b.equals(""))return(false);
+        a=a.toLowerCase();
+        b=b.toLowerCase();
+        java.util.HashMap<Character, Integer> hm = new java.util.HashMap<>();
+        for(int i=0;i<a.length();++i)
+        {
+            char ch = a.charAt(i);
+            if(hm.containsKey(ch))hm.put(ch,hm.get(ch)+1);
+            else hm.put(ch,1);
+        } 
+        for(int i=0;i<b.length();++i)
+        {
+            char ch = b.charAt(i);
+            if(hm.containsKey(ch))hm.put(ch,hm.get(ch)-1);
+            else hm.put(ch,1);
+        }
+        
+        for(java.util.Map.Entry i : hm.entrySet())
+        {
+            if(((Integer)i.getValue())!=0)return(false);
+        }
+        return(true);
+    }
+ }
