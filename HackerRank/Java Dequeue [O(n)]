@@ -1,0 +1,28 @@
+    import java.util.*;
+    public class test {
+        public static void main(String[] args) {
+            Scanner in = new Scanner(System.in);
+            Deque dq = new ArrayDeque<>();
+            HashSet<Integer> hs = new HashSet<>();
+            
+            int n = in.nextInt();
+            int m = in.nextInt();
+            
+            int u=Integer.MIN_VALUE;
+            for (int i = 0; i < n; i++) {
+                int num = in.nextInt();  
+                
+                dq.add(num);
+                hs.add(num);
+                if(dq.size()==m)
+                {
+                    if(hs.size()>u)u=hs.size();
+                    int d = (Integer)dq.remove();
+                    if(!dq.contains(d))hs.remove(d);
+                }
+            }
+            System.out.println(u);
+        }
+    }
+
+
