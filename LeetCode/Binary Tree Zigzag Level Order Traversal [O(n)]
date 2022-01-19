@@ -24,11 +24,11 @@ class Solution {
         Stack<TreeNode> nextLevel = new Stack<>();
         boolean leftToRight = true;
         currLevel.push(root);
-        ArrayList<Integer> tmp1 = new ArrayList<>();
+        ArrayList<Integer> zag = new ArrayList<>();
         
         while(currLevel.isEmpty()==false)
         {
-            List<Integer> zag = new LinkedList<>();
+            
             TreeNode tmp = currLevel.pop();
             
             if(tmp!=null)
@@ -45,19 +45,15 @@ class Solution {
                     if(tmp.right!=null)nextLevel.push(tmp.right);
                 }
             }
-            tmp1.addAll(zag); //3, 9, 20
             if(currLevel.isEmpty()==true)
             {
                 leftToRight=!leftToRight;
                 currLevel.addAll(nextLevel);//9 20
                 nextLevel.clear();
-                //System.out.println(tmp1+" d");
-                zig.add(tmp1);
+                zig.add(zag);
                 
-                tmp1=new ArrayList<Integer>();
-                //System.out.println(zig+" w");
+                zag=new ArrayList<Integer>();
             }
-            //System.out.println(zag);
              
             
         }
