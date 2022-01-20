@@ -1,0 +1,13 @@
+// Add your code here
+    Difference(int a[])
+    {
+        elements = a;
+    }
+    
+    void computeDifference()
+    {
+        Arrays.sort(elements);
+        int min = elements[0];
+        int max = elements[elements.length-1];
+        maximumDifference = Math.abs(max)-Math.abs(min);
+    }
