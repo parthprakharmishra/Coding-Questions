@@ -1,0 +1,57 @@
+import java.io.*;
+import java.util.*;
+
+class Node
+{
+    int data;
+    Node left, right;
+    Node(int d)
+    {
+        data=d;
+    }
+}
+public class Main
+{
+    static class NodeInfo
+    {
+        int size;
+        int min;
+        int max;
+        int ans;
+        booleaan isBST;
+        
+        NodeInfo(){}
+    }
+    
+    public NodeInfo CheckBST(Node root)
+    {
+        if(root==null)return(0, Integer.MIN_VALUE, Integer.MAX_VALUE, 1, true);
+        if(root.left==null && root.right==null)return(1, root.data, root.data, 1, true);
+        
+        NodeInfo leftInfo = CheckBST(root.left);
+        NodeInfo rightInfo = CheckBST(root.right);
+        
+        NodeInfo curr;
+        curr.size = 1 + leftInfo.size + rightInfo.size;
+        
+        if(leftInfo.isBST && rightInfo.isBST && leftInfo.max<root.data && rightInfo.max>root.data)
+        {
+            curr.min = Math.min(root.data(Math.min(leftInfo.min, rightInfo.min)));
+            curr.max = Math.max(root.data(Math.max(leftInfo.max, rightInfo.max)));
+            curr.size = curr.ans;
+            
+            curr.isBST = true;
+            
+            return(curr);
+        }
+        
+        curr.ans = Math.max(leftInfo.ans, rightInfo.ans);
+        curr.isBST = false;
+        return(curr);
+        
+    }
+    
+	public static void main(String[] args) {
+		CheckBST();
+	}
+}
