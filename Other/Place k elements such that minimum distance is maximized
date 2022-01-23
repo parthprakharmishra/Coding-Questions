@@ -1,0 +1,46 @@
+
+public class Main
+{
+    
+    boolean isFeasible(int mid, int arr[], int n, int k)
+    {
+        int pos = arr[0], ele = 1;
+        for(int i=1;i<n, ++i)
+        {
+            if(arr[i]-pos>=mid)
+            {
+                ++ele;
+                pos = arr[i];
+                if(ele==k)return(true);
+            }
+        }
+        return(false);
+    }
+    
+    int largestMinDis(int arr[], int n, int k)
+    {
+        Arrays.sort(arr);
+        int left=1, right=arr[length()-1];
+        int result = -1;
+        
+        while(left<right)
+        {
+            int mid = (left+right)/2;
+            if(isFeasible(mid, arr, n, k))
+            {
+                result = Math.max(result, max);
+                left = mid+1;
+            }
+            else right = mid;
+        }
+        
+    }
+    
+    
+	public static void main(String[] args) 
+	{
+	    Main ob = new Main();
+		int g = ob.largestMinDis(arr, arr.length, k);
+		System.out.println(g);
+	}
+}
