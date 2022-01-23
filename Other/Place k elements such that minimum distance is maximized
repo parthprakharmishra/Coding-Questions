@@ -28,7 +28,7 @@ public class Main
             int mid = (left+right)/2;
             if(isFeasible(mid, arr, n, k))
             {
-                result = Math.max(result, max);
+                result = Math.max(result, mid);
                 left = mid+1;
             }
             else right = mid;
