@@ -1,0 +1,33 @@
+public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        int dd1 = sc.nextInt();
+        int mm1 = sc.nextInt();
+        int yy1 = sc.nextInt();
+        
+        int dd2 = sc.nextInt();
+        int mm2 = sc.nextInt();
+        int yy2 = sc.nextInt();
+        
+        int f=0;
+        
+        if(yy1<yy2)f=0;
+        else if(yy1>yy2)f=10000;
+        else
+        {
+            if(mm1<mm2)f=0;
+            else if(mm1>mm2)f=(mm1-mm2)*500;
+            else
+            {
+                if(dd1<dd2)f=0;
+                else if(dd1>dd2)f=(dd1-dd2)*15;
+                else
+                {
+                    f=0;
+                }
+            }
+        }
+        
+        
+        System.out.println(f);
+    }
