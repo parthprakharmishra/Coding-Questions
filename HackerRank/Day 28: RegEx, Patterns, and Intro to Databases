@@ -1,0 +1,28 @@
+public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        int N = Integer.parseInt(bufferedReader.readLine().trim());
+        
+        String s = ".+@gmail\\.com$";
+        Pattern pattern = Pattern.compile(s);
+        List<String> list = new ArrayList();
+        
+        for (int NItr = 0; NItr < N; NItr++) {
+            String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+            String firstName = firstMultipleInput[0];
+
+            String emailID = firstMultipleInput[1];
+            
+            
+            Matcher matcher = pattern.matcher(emailID);
+            if (matcher.find()){
+                list.add(firstName);
+            } 
+        }
+        
+        Collections.sort(list);
+        
+        for(String i:list)System.out.println(i);
+        bufferedReader.close();
+    }
