@@ -1,0 +1,31 @@
+
+import java.util.*;
+public class Main
+{
+    
+    int minCost(int a[])
+    {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for(int i=0;i<a.length;++i)pq.add(a[i]);
+        
+        int sum=0;
+        while(pq.size()>1)
+        {
+            int first = pq.poll();
+            int second = pq.poll();
+            int s1 = first+second;
+            sum = sum + s1;
+            pq.add(s1);
+        }
+        return(sum);
+    }
+    
+    
+	public static void main(String[] args) {
+		
+		int arr[]={2,5,4,6,8,9};
+		Main ob = new Main();
+		int g = ob.minCost(arr);
+		System.out.println(g);
+	}
+}
