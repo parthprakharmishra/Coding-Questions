@@ -1,0 +1,41 @@
+public static DoublyLinkedListNode sortedInsert(DoublyLinkedListNode llist, int data) {
+        if(llist==null)return new DoublyLinkedListNode(data);
+        if(llist.data>data)
+        {
+            DoublyLinkedListNode tmp = new DoublyLinkedListNode(data);
+            tmp.next=llist;
+            tmp.prev=null;
+            return(tmp);
+        }
+        int h=-1;
+        DoublyLinkedListNode root=llist;
+        while(llist.next!=null)
+        {
+            if(llist.next.data>=data)
+            {
+                DoublyLinkedListNode tmp = llist.next;
+                DoublyLinkedListNode tmp2 = llist;
+                llist.next = new DoublyLinkedListNode(data);
+                llist = llist.next;
+                llist.prev=tmp2;
+                
+                llist.next=tmp;
+                DoublyLinkedListNode tmp3 = llist;
+                llist=llist.next;
+                
+                llist.prev=tmp3;
+                h=0;
+                break;
+            }
+            llist=llist.next;
+        }
+        if(h!=0)
+        {
+            DoublyLinkedListNode tmp4 = new DoublyLinkedListNode(data);
+            tmp4.prev=llist;
+            llist.next=tmp4;
+        }
+        
+        return(root);
+
+    }
