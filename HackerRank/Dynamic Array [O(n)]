@@ -1,0 +1,47 @@
+class Result {
+
+    /*
+     * Complete the 'dynamicArray' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. 2D_INTEGER_ARRAY queries
+     */
+
+    public static List<Integer> dynamicArray(int n, List<List<Integer>> queries) 
+    {
+    // Write your code here
+    //List<List<Integer>> l1 = new LinkedList<List<Integer>>();
+    ArrayList<ArrayList<Integer>> l1 = new ArrayList<>();
+    for (int i = 0; i < n; i++) {
+        l1.add(new ArrayList<Integer>());
+    }
+    
+    
+    ArrayList<Integer> answers = new ArrayList<>();
+    
+    int lastAnswer=0;
+    for(int i=0;i<queries.size();++i)
+    {
+        int n1 = queries.get(i).get(0);
+        int n2 = queries.get(i).get(1);
+        int n3 = queries.get(i).get(2);
+            
+        if(n1==1)
+        {
+            int ind = ((n2^lastAnswer)%n);
+            l1.get(ind).add(n3);
+        }
+        if(n1==2)
+        {
+            System.out.println(n1+"d");
+            int ind = ((n2^lastAnswer)%n);
+            lastAnswer=l1.get(ind).get(n3%(l1.get(ind).size()));
+            answers.add(lastAnswer);
+        }
+    }
+    return(answers);    
+    }
+
+}
