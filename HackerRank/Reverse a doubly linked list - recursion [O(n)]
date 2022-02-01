@@ -1,0 +1,14 @@
+public static DoublyLinkedListNode reverse(DoublyLinkedListNode root) 
+    {
+    // Write your code here
+    
+    
+        if(root==null)return(null);
+        DoublyLinkedListNode tmp = root.next;
+        root.next=root.prev;
+        root.prev=tmp;
+        
+        if(root.prev==null)return(root);
+        return reverse(root.prev);
+        
+    }
