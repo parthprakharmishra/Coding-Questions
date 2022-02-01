@@ -1,0 +1,18 @@
+public static DoublyLinkedListNode reverse(DoublyLinkedListNode root) 
+    {
+    // Write your code here
+        DoublyLinkedListNode tmp1 = root;
+        DoublyLinkedListNode tmp2 = root;
+        
+        
+        while(tmp1!=null)
+        {
+            DoublyLinkedListNode prev = tmp1.prev;
+            tmp1.prev=tmp1.next;
+            tmp1.next=prev;            
+            tmp2=tmp1;
+            tmp1=tmp1.prev;
+        }
+        
+        return(tmp2);
+    }
