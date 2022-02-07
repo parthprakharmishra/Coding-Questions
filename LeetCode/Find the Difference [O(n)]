@@ -1,0 +1,33 @@
+class Solution {
+    public char findTheDifference(String s, String t) 
+    {
+        HashMap<Character,Integer> hm1 = new HashMap<>();
+        HashMap<Character,Integer> hm2 = new HashMap<>();
+        
+        if(s.length()==0)return(t.charAt(0));
+        
+        for(int i=0;i<s.length();++i)
+        {
+            char ch =s.charAt(i);
+            hm1.put(ch, hm1.getOrDefault(ch,0)+1);
+        }
+        for(int i=0;i<t.length();++i)
+        {
+            char ch =t.charAt(i);
+            hm2.put(ch, hm2.getOrDefault(ch,0)+1);
+        }
+        
+        char ch1='\0';
+        for(Map.Entry i:hm2.entrySet())
+        {
+            if(hm1.containsKey(i.getKey()))
+            {                
+                if(hm1.get(i.getKey())==hm2.get(i.getKey()))continue;
+                else {ch1= (char)i.getKey();break;}
+            }
+            else {ch1= (char)i.getKey();break;}
+        }
+        
+        return(ch1);        
+    }
+}
