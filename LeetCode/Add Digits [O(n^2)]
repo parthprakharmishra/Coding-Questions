@@ -1,0 +1,19 @@
+class Solution {
+    public int addDigits(int n) 
+    {
+        int s=0;
+        while(n>=10)
+        {
+            int d=n;
+            s=0;
+            while(d!=0)
+            {
+                int r = d%10;
+                s=s+r;
+                d=d/10;
+            }
+            n=s;
+        }
+        return(n);
+    }
+}
