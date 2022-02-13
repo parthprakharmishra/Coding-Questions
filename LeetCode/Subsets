@@ -1,0 +1,28 @@
+class Solution {
+    List<List<Integer>> l1= new ArrayList<List<Integer>>();
+    public List<List<Integer>> subsets(int[] nums) 
+    {
+        ArrayList<Integer> l2 = new ArrayList<>();
+        if(nums==null || nums.length==0)return(l1);
+        
+        subsets(nums, l2, 0);
+        return(l1);
+    }
+    
+    public void subsets(int nums[], ArrayList<Integer> tmp, int ind)
+    {
+        if(ind>=nums.length)
+        {
+            l1.add(new ArrayList<>(tmp));
+            return;
+        }
+        
+        
+        tmp.add(nums[ind]);
+        subsets(nums, tmp, ind+1);
+        tmp.remove(tmp.size()-1);
+        
+        subsets(nums, tmp, ind+1);
+        
+    }
+}
