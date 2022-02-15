@@ -1,0 +1,15 @@
+class Solution {
+    public int singleNumber(int[] nums) 
+    {
+        
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for(int i:nums)hm.put(i, hm.getOrDefault(i,0)+1);
+        
+        int g=0;
+        for(Map.Entry i: hm.entrySet())
+        {
+            if(hm.get(i.getKey())==1)g=(int)(i.getKey());
+        }
+        return(g);
+    }
+}
