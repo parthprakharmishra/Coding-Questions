@@ -1,0 +1,40 @@
+class Solution {
+    public int calPoints(String[] ops) 
+    {
+        ArrayList<Integer> al = new ArrayList<>();
+        int k=-1;
+        for(int i=0;i<ops.length;++i)
+        {
+            if(ops[i].equals("C"))
+            {
+                al.remove(k);
+                --k;
+            }
+            else if(ops[i].equals("D"))
+            {
+                int h = al.get(k);
+                h = h*2;
+                al.add(h);
+                ++k;
+            }
+            else if(ops[i].equals("+"))
+            {
+                int s = al.get(k)+al.get(k-1);
+                al.add(s);
+                ++k;
+            }
+            else
+            {
+                al.add(Integer.parseInt(ops[i]));
+                ++k;
+            }
+        }
+        
+        int sum=0;
+        for(int i=0;i<al.size();++i)
+        {
+            sum=sum+al.get(i);
+        }
+        return(sum);
+    }
+}
