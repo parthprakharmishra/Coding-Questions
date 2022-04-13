@@ -1,0 +1,58 @@
+class Solution {
+    public int[][] generateMatrix(int n) 
+    {
+        int len=n*n;
+        int arr[][]=new int[n][n];
+        for(int i=0;i<n;++i)
+        {
+            for(int j=0;j<n;++j)
+            {
+                arr[i][j]=0;
+            }
+        }
+        
+        int a=0, b=0, k=1;
+        //arr[a][b]=k;
+        //++k;
+        for(int i=0;i<len;++i)
+        {
+            while(b<n && arr[a][b]==0)
+            {
+                arr[a][b]=k;
+                ++k;
+                ++b;
+            }
+            --b;
+            ++a;
+            
+            while(a<n && arr[a][b]==0)
+            {
+                arr[a][b]=k;
+                ++a;
+                ++k;
+            }
+            --a;
+            --b;
+            
+            while(b>=0 && arr[a][b]==0)
+            {
+                arr[a][b]=k;
+                ++k;
+                --b;
+            }
+            ++b;
+            --a;
+            
+            while(a>=0 && arr[a][b]==0)
+            {
+                arr[a][b]=k;
+                ++k;
+                --a;
+            }
+            ++a;
+            ++b;
+        }
+        
+        return(arr);
+    }
+}
