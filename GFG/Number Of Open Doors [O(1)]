@@ -1,0 +1,6 @@
+class Solution {
+    static int noOfOpenDoors(Long N) {
+        int l = (int)Math.sqrt(N);
+        return(l);
+    }
+};
