@@ -1,0 +1,28 @@
+class Solution {
+    public int minDeletions(String s) {
+        
+        HashMap<Character, Integer> hm = new HashMap<>();
+        for(int i=0;i<s.length();++i)
+        {
+            hm.put(s.charAt(i), hm.getOrDefault(s.charAt(i),0)+1);
+        }
+        
+        HashSet<Integer> hs = new HashSet<>();
+        
+        int del=0;
+        for(Map.Entry i:hm.entrySet()){
+            int freq=(int)i.getValue();
+            if(!hs.contains((int)i.getValue())){
+                hs.add(freq);
+            }
+            else{
+                while(freq>0 && hs.contains(freq)){
+                    --freq;
+                    ++del;
+                }
+                if(freq>0)hs.add(freq);
+            }
+        }
+        return(del);
+    }
+}
