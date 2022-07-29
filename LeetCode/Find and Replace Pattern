@@ -1,0 +1,78 @@
+class Solution {
+    public List<String> findAndReplacePattern(String[] words, String pattern) {
+        
+        List<String> str = new ArrayList<>();
+        HashMap<Character, Integer> hm = new HashMap<>();
+        
+        ArrayList<Integer> al1 = check(pattern);
+        
+        for(int i=0;i<pattern.length();++i)
+        {
+            char ch = pattern.charAt(i);
+            hm.put(ch, hm.getOrDefault(ch,0)+1);
+            
+        }
+        
+        
+        
+        for(int j=0;j<words.length;++j)
+        {
+            HashMap<Character, Integer> hm1 = new HashMap<>();
+            hm1.putAll(hm);
+            
+            HashMap<Character, Integer> hm2 = new HashMap<>();
+            HashMap<Character, Integer> hm3 = new HashMap<>();
+            String s = words[j];
+            ArrayList<Integer> al2 = check(s);
+            
+            for(int i=0;i<s.length();++i)
+            {
+                char ch = s.charAt(i);
+                hm2.put(ch, hm2.getOrDefault(ch,0)+1);
+            }
+            
+            hm3.putAll(hm2);
+            //System.out.println(hm+" "+hm1+" "+hm2+" "+hm3);
+            if(hm1.size()==hm2.size()){
+                for(Map.Entry<Character, Integer>e : hm2.entrySet()){
+                    if(hm1.containsValue(e.getValue())){
+                        hm3.remove(e.getKey(),e.getValue());
+                    }
+                }
+                
+                if(match(al2, al1) && hm3.size()==0)str.add(s);
+                //System.out.println(al1+" "+al2);
+            }            
+        }
+        
+        
+        return(str);
+    }
+    
+    public Boolean match(ArrayList<Integer> al1, ArrayList<Integer> al2){
+        if(al1.size()!=al2.size())return(false);
+        for(int i=0;i<al1.size();++i)
+        {
+            if(al1.get(i)!=al2.get(i))return(false);
+        }
+        return(true);
+    }
+    
+    public ArrayList<Integer> check(String str){
+        HashMap<Character, Integer> hs = new HashMap<>();
+        ArrayList<Integer> al = new ArrayList<>();
+        
+        for(int i=0;i<str.length();++i)
+        {
+            char ch = str.charAt(i);
+            if(hs.containsKey(ch)){
+                al.add(hs.get(ch));
+            }
+            else{
+                hs.put(ch, i+1);
+                al.add(i+1);
+            }
+        }
+        return(al);
+    }
+}
