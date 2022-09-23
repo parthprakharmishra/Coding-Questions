@@ -1,0 +1,18 @@
+class Solution {
+    public int concatenatedBinary(int n) {
+        
+    String z="";
+    long mod = (long)1e9+7;
+    long res=0;
+        
+    for(int i=1;i<=n;++i)
+    {
+        z=Integer.toBinaryString(i);
+        res = (res << z.length())%mod;
+        System.out.println(res+"*");
+        res = (res+i)%mod;
+        System.out.println(res);
+    }
+    return((int)res);
+    }
+}
